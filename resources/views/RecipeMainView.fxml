@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="790.0" prefWidth="830.0" style="-fx-background-color: #81979d;" xmlns="http://javafx.com/javafx/8.0.162" xmlns:fx="http://javafx.com/fxml/1" fx:controller="be.ac.ulb.infof307.g06.controllers.RecipeMainController">
+   <children>
+      <TableView fx:id="tableView" editable="true" layoutX="48.0" layoutY="232.0" prefHeight="410.0" prefWidth="320.0">
+        <columns>
+          <TableColumn fx:id="columnProduct" prefWidth="164.0" text="Ingredients" />
+          <TableColumn fx:id="columnQuantity" prefWidth="82.0" text="Quantite" />
+            <TableColumn fx:id="columnUnit" prefWidth="70.0" text="Unite" />
+        </columns>
+      </TableView>
+      <TextArea fx:id="textArea" layoutX="449.0" layoutY="150.0" prefHeight="490.0" prefWidth="320.0" promptText="Veuillez encoder les differentes etapes de la recette.">
+         <font>
+            <Font name="Comic Sans MS" size="26.0" />
+         </font>
+      </TextArea>
+      <Label layoutX="288.0" layoutY="44.0" text="Recette" textFill="#00c3ff">
+         <font>
+            <Font name="Droid Sans Bold" size="27.0" />
+         </font>
+      </Label>
+      <Label layoutX="573.0" layoutY="98.0" text="Etapes">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Label>
+      <Label layoutX="129.0" layoutY="98.0" text="Ingredients">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Label>
+      <Label layoutX="41.0" layoutY="157.0" prefHeight="25.0" prefWidth="221.0" text="Nombre de personnes  :">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font></Label>
+      <Button fx:id="backButton" layoutX="48.0" layoutY="48.0" mnemonicParsing="false" onAction="#back" style="-fx-background-color: #00c3ff;" text="Retour">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font></Button>         
+      <Button fx:id="logoutButton" layoutX="677.0" layoutY="45.0" mnemonicParsing="false" onAction="#logout" style="-fx-background-color: #00c3ff;" text="Deconnexion" textFill="RED">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font></Button>
+      <Label fx:id="userName" alignment="CENTER" layoutX="441.0" layoutY="44.0" prefHeight="17.0" prefWidth="122.0" text="Label" textAlignment="CENTER" textFill="#00c3ff">
+         <font>
+            <Font name="Droid Sans Bold" size="27.0" />
+         </font></Label>
+      <TextField fx:id="numberOfPerson" layoutX="271.0" layoutY="156.0" prefHeight="25.0" prefWidth="34.0" />
+      <Button fx:id="plusButtonPerson" layoutX="306.0" layoutY="156.0" mnemonicParsing="false" onAction="#plusPersonPressed" style="-fx-background-color: #00c3ff;" text="+" />
+      <Button fx:id="minusButtonPerson" layoutX="341.0" layoutY="156.0" mnemonicParsing="false" onAction="#minusPersonPressed" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: #00c3ff;" text="-" />
+      <ComboBox fx:id="ingredientList" editable="true" layoutX="51.0" layoutY="196.0" prefWidth="150.0" />
+      <TextField fx:id="textNumber" layoutX="211.0" layoutY="195.0" prefHeight="27.0" prefWidth="70.0" promptText="quantite" />
+      <Button fx:id="addButton" layoutX="303.0" layoutY="196.0" mnemonicParsing="false" onAction="#addPressed" style="-fx-background-color: #00c3ff;" text="ajouter" />
+      <Button fx:id="resetButton" layoutX="50.0" layoutY="648.0" mnemonicParsing="false" onAction="#resetPressed" style="-fx-background-color: #00c3ff;" text="Reinitialiser" textFill="#ff0505">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font></Button>
+      <Button fx:id="deleteButton" layoutX="189.0" layoutY="648.0" mnemonicParsing="false" onAction="#deletePressed" style="-fx-background-color: #00c3ff;" text="supprimer">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font></Button>
+      <Button fx:id="plusButton" layoutX="312.0" layoutY="651.0" mnemonicParsing="false" onAction="#plusPressed" style="-fx-background-color: #00c3ff;" text="+" />
+      <Button fx:id="minusButton" layoutX="341.0" layoutY="651.0" mnemonicParsing="false" onAction="#minusPressed" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: #00c3ff;" text="-" />
+      <Button fx:id="saveButton" layoutX="415.0" layoutY="661.0" mnemonicParsing="false" onAction="#saveRecipeInDB" prefHeight="43.0" prefWidth="196.0" style="-fx-background-color: #00c3ff;" text="Enregistrer la recette">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="loadRecipe" layoutX="618.0" layoutY="661.0" mnemonicParsing="false" onAction="#loadRecipeInWindow" prefHeight="43.0" prefWidth="187.0" style="-fx-background-color: #00c3ff;" text="Charger une recette">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="shoppingListButton" layoutX="539.0" layoutY="720.0" mnemonicParsing="false" onAction="#generateShoppingList" prefHeight="43.0" prefWidth="158.0" style="-fx-background-color: #00c3ff;" text="Liste de Course">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

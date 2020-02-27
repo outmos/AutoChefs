@@ -1,0 +1,10 @@
+eclipse.preferences.version=1
+encoding//src/be/ac/ulb/infof307/g06/controllers/CourseListeController.java=UTF-8
+encoding//src/be/ac/ulb/infof307/g06/controllers/RegisterController.java=UTF-8
+encoding//src/be/ac/ulb/infof307/g06/controllers/SaveRecipeController.java=UTF-8
+encoding//src/be/ac/ulb/infof307/g06/controllers/SceneManager.java=UTF-8
+encoding//src/be/ac/ulb/infof307/g06/controllers/ShoppingListController.java=UTF-8
+encoding//src/be/ac/ulb/infof307/g06/database/AccountManager.java=UTF-8
+encoding//src/be/ac/ulb/infof307/g06/database/NutritionalValueDataAccessor.java=UTF-8
+encoding//src/be/ac/ulb/infof307/g06/database/RecipeDataAccessor.java=UTF-8
+encoding//src/be/ac/ulb/infof307/g06/model/RecipeList.java=UTF-8

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="ap" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="614.0" prefWidth="839.0" style="-fx-background-color: #81979d;" xmlns="http://javafx.com/javafx/8.0.162" xmlns:fx="http://javafx.com/fxml/1" fx:controller="be.ac.ulb.infof307.g06.controllers.ShopController">
+   <children>
+      <Label layoutX="370.0" layoutY="25.0" text="Magasins" textFill="#00c3ff">
+         <font>
+            <Font name="Droid Serif Bold" size="27.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tableView" layoutX="58.0" layoutY="81.0" prefHeight="494.0" prefWidth="746.0">
+        <columns>
+          <TableColumn fx:id="columnLogo" prefWidth="219.0" />
+          <TableColumn fx:id="columnShop" prefWidth="109.0" text="Magasins" />
+            <TableColumn fx:id="columnAddress" prefWidth="334.0" text="Adresse" />
+            <TableColumn fx:id="columnPrice" prefWidth="83.0" text="Prix (€)" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

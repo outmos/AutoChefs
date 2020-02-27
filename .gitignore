@@ -1,0 +1,4 @@
+/bin/
+
+resources/\.DS_Store
+/.pmd

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>JavaFx Map</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
+        crossorigin="" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
+        crossorigin="anonymous">
+
+    <link href="MarkerCluster.css" rel="stylesheet"></link>
+    <link href="MarkerCluster.Default.css" rel="stylesheet"></link>
+    
+
+
+    <style>
+        #mapid { height: 100vh; }
+    </style>
+</head>
+<body>
+    
+    <div id="mapid"></div>
+    
+    
+    <!-- Modal -->
+    <div id="mymodal"class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Ajouter un magasin</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h3 id="succes_ajout_mag" style="display:none">Votre magasin a été ajouté avec succés</h3>
+                    <form id="ajout_form">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group input-group-sm">
+                                    <label for="nom_mag_input">Nom du magasin</label>
+                                    <input id="nom_mag_input" type="text" class="form-control"  placeholder="ex: Delhaiza, Lidl, ...etc"
+                                        required>
+                                    <span id="nom_mag_valid" style="color:red; font-size:10px">Champs Obligatoire</span>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group input-group-sm">
+                                    <label for="adresse_mag_input">Adresse du magasin</label>
+                                    <input id="adresse_mag_input" type="text" class="form-control" placeholder="ex: rue Louis Hap 217, ...etc"
+                                        required>
+                                    <span id="adresse_mag_valid" style="color:red; font-size:10px">Champs Obligatoire</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <label for="hours_table">Horaire du magasin</label>
+                                <table id="hours_table" class="table table-bordered table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col"></th>
+                                            <th scope="col">Lun</th>
+                                            <th scope="col">Mar</th>
+                                            <th scope="col">Mer</th>
+                                            <th scope="col">Jeu</th>
+                                            <th scope="col">Vend</th>
+                                            <th scope="col">Sam</th>
+                                            <th scope="col">Dim</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">De</th>
+                                            <td>
+                                                <div class="input-group input-group-sm mb-2">
+                                                    <input type="text" class="h_lun form-control" id="begin_lun" placeholder="h:m">
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="input-group input-group-sm mb-2">
+                                                    <input type="text" class="h_mar form-control" id="begin_mar" placeholder="h:m">
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="input-group input-group-sm mb-2">
+                                                    <input type="text" class="h_mer form-control" id="begin_mer" placeholder="hh:mm">
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="input-group input-group-sm mb-2">
+                                                    <input type="text" class="h_jeu form-control" id="begin_jeu" placeholder="hh:mm">
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="input-group input-group-sm mb-2">
+                                                    <input type="text" class="h_vend form-control" id="begin_vend" placeholder="hh:mm">
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="input-group input-group-sm mb-2">
+                                                    <input type="text" class="h_sam form-control" id="begin_sam" placeholder="hh:mm">
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="input-group input-group-sm mb-2">
+                                                    <input type="text" class="h_dim form-control" id="begin_dim" placeholder="hh:mm">
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">À</th>
+                                            <td>
+                                                <div class="input-group input-group-sm mb-2">
+                                                    <input type="text" class="h_lun form-control" id="end_lun" placeholder="hh:mm">
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="input-group input-group-sm mb-2">
+                                                    <input type="text" class="h_mar form-control" id="end_mar" placeholder="hh:mm">
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="input-group input-group-sm mb-2">
+                                                    <input type="text" class="h_mer form-control" id="end_mer" placeholder="hh:mm">
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="input-group input-group-sm mb-2">
+                                                    <input type="text" class="h_jeu form-control" id="end_jeu" placeholder="hh:mm">
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="input-group input-group-sm mb-2">
+                                                    <input type="text" class="h_vend form-control" id="end_vend" placeholder="hh:mm">
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="input-group input-group-sm mb-2">
+                                                    <input type="text" class="h_sam form-control" id="end_sam" placeholder="hh:mm">
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="input-group input-group-sm mb-2">
+                                                    <input type="text" class="h_dim form-control" id="end_dim" placeholder="hh:mm">
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-6">
+                                <label for="types_table">Le magasin est:</label>
+                                <table id="types_table" class="table table-bordered table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th>Bio</th>
+                                            <th>Végétarien</th>
+                                            <th>Végétalien</th>
+                                            <th>Local</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="text-center">
+                                                <input class="checkboxes" value = "Bio" type="checkbox" id="check_bio">
+                                            </td>
+                                            <td class="text-center">
+                                                <input class="checkboxes" value="Vegetarien" type="checkbox" id="check_vegetarien">
+                                            </td>
+                                            <td class="text-center">
+                                                <input class="checkboxes" value="Vegetalien" type="checkbox" id="check_vegetalien">
+                                            </td>
+                                            <td class="text-center">
+                                                <input class="checkboxes" value="Local" type="checkbox" id="check_local">
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button id="btn_close_ajout" style="display:none" type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                    <button id="mag_annuler" type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Annuler</button>
+                    <button id="mag_ajout" type="button" class="btn btn-primary btn-sm">Ajouter</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<!-- Make sure you put this AFTER Leaflet's CSS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+    crossorigin="anonymous"></script>
+<script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js" integrity="sha512-/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw=="
+    crossorigin=""></script>
+<script src="leaflet.markercluster.js" type="text/javascript"></script>
+<script src="https://js.maxmind.com/js/apis/geoip2/v2.1/geoip2.js" type="text/javascript"></script>
+<script type="text/javascript" src="map.js"></script>
+</html>

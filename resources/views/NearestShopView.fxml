@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.web.WebView?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="950.0" style="-fx-background-color: #81979d;" xmlns="http://javafx.com/javafx/8.0.162" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox fx:id="vboxmap" layoutX="392.0" layoutY="85.0" prefHeight="571.0" prefWidth="544.0">
+         <children>
+            <WebView fx:id="webviewmap" prefHeight="571.0" prefWidth="541.0" />
+         </children>
+      </VBox>
+      <VBox layoutX="14.0" layoutY="85.0" prefHeight="571.0" prefWidth="331.0" style="-fx-border-width: 2; -fx-border-style: solid;">
+         <children>
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="567.0" prefWidth="327.0" style="-fx-background-color: #81979d;">
+               <children>
+                  <Button layoutX="14.0" layoutY="448.0" mnemonicParsing="false" onAction="#onSearchClick" prefHeight="37.0" prefWidth="129.0" style="-fx-background-color: #00c3ff;" text="Rechercher">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font></Button>
+                  <TextField fx:id="longField" layoutX="126.0" layoutY="108.0" prefHeight="37.0" prefWidth="181.0" promptText="ex: 4,51" />
+                  <Label layoutX="21.0" layoutY="117.0" text="Longitude" textFill="#00c3ff">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font></Label>
+                  <Label layoutX="22.0" layoutY="202.0" text="Latitude" textFill="#00c3ff">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font></Label>
+                  <TextField fx:id="latField" layoutX="126.0" layoutY="193.0" prefHeight="37.0" prefWidth="181.0" promptText="ex: 51,0" />
+                  <Label layoutX="66.0" layoutY="272.0" text="Moyen de transport" textAlignment="CENTER">
+                     <font>
+                        <Font size="19.0" />
+                     </font></Label>
+                  <ComboBox fx:id="modes" layoutX="79.0" layoutY="324.0" prefWidth="170.0">
+					<items>
+				        <FXCollections fx:factory="observableArrayList">
+				            <String fx:value="En voiture" />
+				            <String fx:value="En velo" />
+				            <String fx:value="A pieds" />
+				        </FXCollections>
+				    </items>
+                  	<value>
+        				<String fx:value="En voiture" />
+    				</value>
+                  </ComboBox>
+                  <Button layoutX="188.0" layoutY="448.0" mnemonicParsing="false" onAction="#resetForm" prefHeight="37.0" prefWidth="129.0" style="-fx-background-color: #00c3ff;" text="Effacer">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font></Button>
+                  <Label layoutX="60.0" layoutY="40.0" text="Position de départ" textAlignment="CENTER" textFill="#00c3ff">
+                     <font>
+                        <Font name="System Bold" size="19.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
+      <Label layoutX="323.0" layoutY="22.0" prefHeight="35.0" prefWidth="327.0" text="Magasin plus proche" textFill="#00c3ff">
+         <font>
+            <Font name="DejaVu Sans Bold" size="27.0" />
+         </font>
+      </Label>
+      
+   </children>
+</AnchorPane>
